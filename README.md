@@ -122,6 +122,8 @@ try <img src = 'https://i.postimg.cc/cCJg1kKz/xplendid-logo-body.png' width = '6
 
 Connect with me:
 
-   <img src = 'https://i.postimg.cc/wj3w1mjG/kofi-icon.png' width = '25' height = '25'/>  **[/domingosdeeulariadumba](https://ko-fi.com/domingosdeeulariadumba)**
-   <img src = 'https://i.postimg.cc/t4vNmLB0/linktree-icon.png' width = '25' height = '25'/>  **[/domingosdeeulariadumba](https://linktr.ee/domingosdeeulariadumba)**
-   <img src = 'https://i.postimg.cc/W1178266/linkedin-icon.png' width = '25' height = '25'/>  **[/domingosdeeulariadumba](https://linkedin.com/in/domingosdeeulariadumba/)**
+<img src = 'https://i.postimg.cc/wj3w1mjG/kofi-icon.png' width = '25' height = '25'/>  **[/domingosdeeulariadumba](https://ko-fi.com/domingosdeeulariadumba)**
+
+<img src = 'https://i.postimg.cc/t4vNmLB0/linktree-icon.png' width = '25' height = '25'/>  **[/domingosdeeulariadumba](https://linktr.ee/domingosdeeulariadumba)**
+
+<img src = 'https://i.postimg.cc/W1178266/linkedin-icon.png' width = '25' height = '25'/>  **[/domingosdeeulariadumba](https://linkedin.com/in/domingosdeeulariadumba/)**
