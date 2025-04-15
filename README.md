@@ -115,7 +115,7 @@ This project would not be possible without the massive contribution of Evan Mill
 ---
 ## Explore the Web App 🌐🚀
 
-Try the   <img src = 'https://i.postimg.cc/XJ38H6RZ/xplendid-logo-rect.png' width = '70' height = '35'/>   **[web service](https://xplendid.onrender.com)**.
+Try   <img src = 'https://i.postimg.cc/XJ38H6RZ/xplendid-logo-rect.png' width = '70' height = '35'/>   **[web service](https://xplendid.onrender.com)**.
 
 
 ## Networking
