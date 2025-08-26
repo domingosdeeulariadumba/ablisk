@@ -12,19 +12,6 @@ This module aims to make it easier for data scientists, analysts, and engineers 
 
 ---
 
-## Dependencies
-
-The following Python libraries are required:
-
-```python
-import scipy.stats as scs
-import numpy as np
-import plotly.graph_objects as go
-import pandas as pd
-```
-
----
-
 ## Class Overview
 
 ### `ABLisk`
