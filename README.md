@@ -1,6 +1,6 @@
-# xplendid
+# ablisk
 
-This module aims to make it easier for data scientists, analysts, and engineers to conduct statistically sound experiments. At its core is lies the `ABTesting` class. This class provides tools for designing, analyzing, and simulating A/B tests.
+This module aims to make it easier for data scientists, analysts, and engineers to conduct statistically sound experiments. At its core is lies the `ABLisk` class. This class provides tools for designing, analyzing, and simulating A/B tests.
 
 ---
 
@@ -27,12 +27,12 @@ import pandas as pd
 
 ## Class Overview
 
-### `ABTesting`
+### `ABLisk`
 The main class provides the following methods and attributes:
 
 #### **Initialization**
 ```python
-ABTesting(bcr, mde, alpha = 0.05, power = 0.8, is_absolute_variation: bool = True, is_two_tailed: bool = True)
+ABLisk(bcr, mde, alpha = 0.05, power = 0.8, is_absolute_variation: bool = True, is_two_tailed: bool = True)
 ```
 
 - **bcr**: Baseline Conversion Rate (0 <= mde < 1).
@@ -60,18 +60,18 @@ ABTesting(bcr, mde, alpha = 0.05, power = 0.8, is_absolute_variation: bool = Tru
 
 ### Cloning the repository
 
-**`git clone https://github.com/domingosdeeulariadumba/explendid.git`**
+**`git clone https://github.com/domingosdeeulariadumba/ablisk.git`**
 
 
 ### Importing the module
 
 ```python
-from xplendidLab import ABTesting
+from ablisk import ABLisk
 ```
 
 ### Example: Calculate Sample Size
 ```python
-ab_test = ABTesting(bcr = 0.1, mde = 0.02, alpha = 0.05, power = 0.8)
+ab_test = ABLisk(bcr = 0.1, mde = 0.02, alpha = 0.05, power = 0.8)
 sample_size = ab_test.evan_miller_sample_size()
 print(f"Required Sample Size: {sample_size}")
 ```
@@ -81,7 +81,7 @@ print(f"Required Sample Size: {sample_size}")
 ab_test.get_experiment_results(n_ctrl = 500, p_ctrl = 0.1, n_trmt = 500, p_trmt = 0.12, plot_type = 'Confidence Intervals')
 ```
 
-💡 A more detailed example regarding the implementation of this tool is available on its respective <em> <a href = 'https://github.com/domingosdeeulariadumba/xplendid/blob/master/xplendidExamplesNotebook.ipynb' target = '_blank'> notebook.</em> You can view the notebook using nbviewer due to GitHub rendering limitations [here](https://github.com/domingosdeeulariadumba/xplendid/blob/main/xplendidExamplesNotebook.ipynb).
+💡 A more detailed example regarding the implementation of this tool is available on its respective <em> <a href = 'https://github.com/domingosdeeulariadumba/ablisk/blob/master/ablisk_examples_notebook.ipynb' target = '_blank'> notebook.</em> You can view the notebook using nbviewer due to GitHub rendering limitations [here](https://github.com/domingosdeeulariadumba/ablisk/blob/main/ablisk_examples_notebook.ipynb).
 
 ---
 
@@ -115,7 +115,7 @@ This project would not be possible without the massive contribution of Evan Mill
 ---
 ## Explore the Web App 🌐🚀
 
-Try   <img src = 'https://i.postimg.cc/XJ38H6RZ/xplendid-logo-rect.png' width = '70' height = '35'/>   **[web service](https://xplendid.onrender.com)**.
+**ablisk** is also the foundation of **xplendid** – the web application dedicated for design and analysis of A/B testing. More about this tool **[here](https://xplendid.streamlit.app/)**.
 
 
 ## Networking
