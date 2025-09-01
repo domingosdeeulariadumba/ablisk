@@ -45,9 +45,9 @@ ABLisk(bcr, mde, alpha = 0.05, power = 0.8, is_absolute_variation: bool = True, 
 
 ## Usage
 
-### Cloning the repository
+### Installation
 
-**`git clone https://github.com/domingosdeeulariadumba/ablisk.git`**
+**`pip install ablisk`**
 
 
 ### Importing the module
@@ -102,7 +102,7 @@ This project would not be possible without the massive contribution of Evan Mill
 ---
 ## Explore the Web App 🌐🚀
 
-**ablisk** is also the foundation of **xplendid** – the web application dedicated for design and analysis of A/B testing. More about this tool **[here](https://xplendid.streamlit.app/)**.
+**ablisk** is the statistical engine of **[xplendid](https://xplendid.streamlit.app/)** – the AI-assisted web application version for this module.
 
 
 ## Networking

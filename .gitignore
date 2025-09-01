@@ -1,2 +1,6 @@
-# Pycache stuff
+.ipynb_checkpoints/
 __pycache__/
+dist/
+*.egg-info
+*.in
+*.toml
