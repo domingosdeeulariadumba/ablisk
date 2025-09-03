@@ -232,8 +232,7 @@ class ABLisk:
                     y = [3, 9],
                     mode = 'lines',
                     line = dict(color = '#04ef62', dash = 'dot'),
-                    name='MDE',
-                    showlegend = False
+                    name='MDE'
                 ))
             
                 # Text annotations
