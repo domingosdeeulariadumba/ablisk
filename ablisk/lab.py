@@ -9,45 +9,45 @@ import pandas as pd
 class ABLisk:
     
     # Initializing the class
-    def __init__(self, bcr: float, mde: float, alpha: float = .05, power: float = .8, is_absolute_variation: bool = True, is_two_tailed: bool = True):
+    def __init__(self, bcr: float, mde: float, alpha: float = 5, power: float = 80, is_absolute_variation: bool = True, is_two_tailed: bool = True):
         
         '''
         Parameters
         ----------
         - bcr: the Baseline Conversion Rate.
         - mde: the Minimum Detectable Effect (or practical significance).
-        - alpha: the Significance level of the experiment (default: 0.05).
+        - alpha: the Significance level of the experiment (default: 5).
         - power: statistical power — measures the probability that the test will
           reject the null hypothesis if the treatment really has an effect 
-          (default: 0.8).
+          (default: 80).
         - is_absolute_variation: whether the diffrence between the two groups is
           absolute or relative (default: True)
         -  is_two_tailed: for deciding between a two or a one-tailed test (default: True)
         '''
         
         # BCR value condition
-        if isinstance(bcr, (int, float)) and ((bcr < .0) or (bcr > 1.0)):
-            raise ValueError('Baseline Conversion Rate (bcr) spans from 0 and 1.')
+        if isinstance(bcr, (int, float)) and ((bcr < .0) or (bcr > 100.0)):
+            raise ValueError('Baseline Conversion Rate (bcr) spans from 0 and 100.')
         elif not isinstance(bcr, (int, float)):
             raise TypeError(f'Baseline Conversion Rate (bcr) must be a number! "{bcr}" was inserted instead.')
 
         # MDE value condition 
-        if isinstance(mde, (int, float)) and ((mde <= .0) or (mde > 1.0)):
-            raise ValueError('Minimum Detectable Effect must be greater than 0 or equal to 1!')
+        if isinstance(mde, (int, float)) and ((mde <= .0) or (mde > 100.0)):
+            raise ValueError('Minimum Detectable Effect must be greater than 0 or equal to 100!')
         elif not isinstance(mde, (int, float)):
             raise TypeError(f'Minimum Detectable Effect must be a number! "{mde}" was inserted instead.')
          
         # Significance Level and Power entries condition
-        if (not isinstance(alpha, (int, float))) or ((alpha < 0) or (alpha > 1)):
+        if (not isinstance(alpha, (int, float))) or ((alpha < 0) or (alpha > 100)):
             raise ValueError(f'Significance level must be between 0 and 1! Received "{alpha}".')
-        if (not isinstance(power, (int, float))) or ((power < 0) or (power > 1)):
+        if (not isinstance(power, (int, float))) or ((power < 0) or (power > 100)):
             raise ValueError(f'Power must range between 0 and 1! Received "{power}".')
                 
         # Attributes
-        self.bcr = bcr
-        self.effect_size = mde if is_absolute_variation else bcr * mde
-        self.tail = alpha/2 if is_two_tailed else alpha
-        self.power = power
+        self.bcr = bcr / 100
+        self.effect_size = (mde if is_absolute_variation else bcr * mde) / 100
+        self.tail = (alpha/2 if is_two_tailed else alpha) / 100
+        self.power = power / 100
        
         
     # Evan Miller Sample Size Calculator   
@@ -81,7 +81,7 @@ class ABLisk:
 
     
     # A method for experiment results summary
-    def get_experiment_results(self, n_ctrl: int, p_ctrl: float, n_trmt: int, p_trmt: float, plot_ = None):  
+    def get_experiment_results(self, n_ctrl: int, p_ctrl: float, n_trmt: int, p_trmt: float, plot_ = None, full_summary = True) -> str | tuple[str]:  
         """
         Method for retrieving the experiment results.
         
@@ -93,6 +93,8 @@ class ABLisk:
         - p_trmt: the proportion of conversion in the treatment group.
         - plot_type (default: 'KDE'): parameter for deciding whether to plot 
           KDEs or Confidence Intervals for supporting the final decision.
+        - full_summary (default: True): whether to return the summary as a single string (if True) or as a tuple of summary and recommendation (if False).
+        
         """
         
         # Proportions input conditions
@@ -279,8 +281,13 @@ class ABLisk:
                 recommendation = 'Since the Maximum Estimated Difference is lower than or equal to the Minimum Detectable Effect, it is then recommended to keep the current version!'
             else:
                 recommendation = 'There might not have enough Power to draw any conclusion about the experiment results. Thus, it is recommended to conduct some additional tests.'
-            line1 = 'Results and Recomendation\n==========================\n[1] Summary:\n'
-            line3 = f'\n\n[2] Recommendation:\n{recommendation}'
-            line4 = '\n\n\n\n*Note: This recommendation does not assume that you have designed your experiment correctly.'
-            rec_and_sum = line3 + line4            
-            print(line1, results_df, rec_and_sum)
+            text0 = 'Results and Recomendation\n==========================\n[1] Summary:\n'
+            text1 = (
+                f'\n\n[2] Recommendation:\n{recommendation}'
+                '\n\n\n\n*Note: This recommendation does not assume that you have designed your experiment correctly.'
+            )       
+            summary_and_recommendation = text0, results_df, text1
+            if full_summary:
+                return ''.join(str(i) for i in summary_and_recommendation)
+            else:
+                return summary_and_recommendation
