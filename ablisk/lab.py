@@ -9,7 +9,7 @@ import pandas as pd
 class ABLisk:
     
     # Initializing the class
-    def __init__(self, bcr: float, mde: float, alpha: float = 5, power: float = 80, is_absolute_variation: bool = True, is_two_tailed: bool = True):
+    def __init__(self, bcr: float, mde: float, alpha: float = 5.0, power: float = 80.0, is_absolute_variation: bool = True, is_two_tailed: bool = True):
         
         '''
         Parameters
@@ -38,9 +38,9 @@ class ABLisk:
             raise TypeError(f'Minimum Detectable Effect must be a number! "{mde}" was inserted instead.')
          
         # Significance Level and Power entries condition
-        if (not isinstance(alpha, (int, float))) or ((alpha < 0) or (alpha > 100)):
+        if (not isinstance(alpha, (int, float))) or ((alpha < .0) or (alpha > 100.0)):
             raise ValueError(f'Significance level must be between 0 and 1! Received "{alpha}".')
-        if (not isinstance(power, (int, float))) or ((power < 0) or (power > 100)):
+        if (not isinstance(power, (int, float))) or ((power < .0) or (power > 100.0)):
             raise ValueError(f'Power must range between 0 and 1! Received "{power}".')
                 
         # Attributes
@@ -194,7 +194,7 @@ class ABLisk:
                 )
                 
             
-            elif plot_ == 'Confidence Intervals':
+            elif plot_ == 'Error Bars':
                 # Error bars and effects
                 fig = go.Figure()
             
