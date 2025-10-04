@@ -6,7 +6,7 @@ This module aims to make it easier for data scientists, analysts, and engineers 
 
 ## Features
 
-- **Sample Size Calculation**: Calculate the minimum required sample size using Evan Miller's methodology.
+- **Sample Size Calculation**: Calculate the minimum required sample size.
 - **Result Analysis**: Retrieve and visualize experiment results with support for confidence intervals and kernel density estimates (KDEs).
 - **Recommendation**: Generate results summary and recommendations based os results.
 
@@ -31,8 +31,8 @@ ABLisk(bcr, mde, alpha = 0.05, power = 0.8, is_absolute_variation: bool = True, 
 
 #### **Methods**
 
-1. **`evan_miller_sample_size()`**
-   - Calculates the required sample size using Evan Miller's methodology.
+1. **`get_sample_size()`**
+   - Calculates the minimum required sample size.
 
 3. **`get_experiment_results(n_ctrl, p_ctrl, n_trmt, p_trmt, plot_type = 'KDE')`**
    - Analyzes and visualizes results.
@@ -59,7 +59,7 @@ from ablisk import ABLisk
 ### Example: Calculate Sample Size
 ```python
 ab_test = ABLisk(bcr = 0.1, mde = 0.02, alpha = 0.05, power = 0.8)
-sample_size = ab_test.evan_miller_sample_size()
+sample_size = ab_test.get_sample_size()
 print(f"Required Sample Size: {sample_size}")
 ```
 
