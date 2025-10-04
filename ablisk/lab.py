@@ -50,12 +50,11 @@ class ABLisk:
         self.power = power / 100
        
         
-    # Evan Miller Sample Size Calculator   
-    def evan_miller_sample_size(self) -> int:
+    # A function for obtaining the minimum required sample size   
+    def get_sample_size(self) -> int:
         
         '''
-        A method for retrieving the required sample size using Evan Miller's 
-        methodology.
+        A method for retrieving the required sample size.
         '''  
         
         try:   
