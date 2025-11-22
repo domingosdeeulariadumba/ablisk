@@ -51,7 +51,7 @@ class ABLisk:
        
         
     # A function for obtaining the minimum required sample size   
-    def get_sample_size(self) -> int:
+    def get_sample_size(self) -> int | None:
         
         '''
         A method for retrieving the required sample size.
@@ -80,7 +80,7 @@ class ABLisk:
 
     
     # A method for experiment results summary
-    def get_experiment_results(self, n_ctrl: int, p_ctrl: float, n_trmt: int, p_trmt: float, plot_ = None, full_summary = True) -> str | tuple[str]:  
+    def get_experiment_results(self, n_ctrl: int, p_ctrl: float, n_trmt: int, p_trmt: float, plot_ = None, full_summary = True) -> go.Figure | str | tuple[str]:  
         """
         Method for retrieving the experiment results.
         
