@@ -1,8 +1,9 @@
 # Dependencies
-import scipy.stats as scs
+import math
 import numpy as np
-import plotly.graph_objects as go
 import pandas as pd
+import scipy.stats as scs
+import plotly.graph_objects as go
 
 
 # A class for A/B tests
@@ -74,7 +75,7 @@ class ABLisk:
             sample_size = pow(
                 (z_alpha * std1 + z_power * std2) / self.effect_size, 2
             )    
-            return round(sample_size)
+            return math.ceil(sample_size)
         except:
             print('Are you sure about BCR and MDE values?')
 
