@@ -81,7 +81,7 @@ def load_from_dataset(dataset: str | pd.DataFrame) -> tuple[int, float, int, flo
              
     # Checking result records
     converted_values = set(dataset.converted.unique()) if dataset.converted.dtype != 'object' \
-                        else df.conversion.str.lower()
+                        else set(dataset.converted.str.lower())
     
     if converted_values <= {'yes', 'no'}:
         dataset['converted'] = dataset.converted.map(lambda e: 1 if e == 'yes' else 0)
