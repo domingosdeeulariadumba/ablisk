@@ -83,8 +83,8 @@ class ABLisk:
     
     # A method for experiment results summary
     def get_experiment_results(
-            self, n_ctrl: int, p_ctrl: float, n_trmt: int, p_trmt: float,
-            plot_ = None, full_summary = True, from_dataset = False, dataset: str | None = None
+            self, n_ctrl: int = 0, p_ctrl: float = .0, n_trmt: int = 0, p_trmt: float = .0,
+            plot = None, full_summary = True, from_dataset = False, dataset: str | None = None
             ) -> go.Figure | str | tuple[str]:  
         """
         Method for retrieving the experiment results.
@@ -109,7 +109,7 @@ class ABLisk:
         if from_dataset:
             if dataset is None:
                 raise ValueError('Dataset name must be provided when "from_dataset" is True.')
-            n_ctrl, p_ctrl, n_trmt, p_trmt = load_from_experiment_dataset(dataset)
+            n_ctrl, p_ctrl, n_trmt, p_trmt = load_from_dataset(dataset)
         
         # Proportions input conditions
         if isinstance(p_ctrl, (int, float)) and ((p_ctrl < .0) or (p_ctrl > 1.0)):
@@ -143,14 +143,14 @@ class ABLisk:
         lower_bound, upper_bound = norm_ctrl.ppf(self.tail), norm_ctrl.ppf(1 - self.tail)
         
         # Plotting options
-        if plot_ is not None:
+        if plot is not None:
             x_trmt = np.linspace(d_hat - pooled_se * 5, d_hat + pooled_se * 5, int(n_trmt))
             y_trmt = norm_trmt.pdf(x_trmt)
             x_ctrl = np.linspace(- pooled_se * 5, pooled_se * 5, int(n_ctrl))
             y_ctrl = norm_ctrl.pdf(x_ctrl)
             
             # KDE Plot
-            if plot_ == 'KDE':
+            if plot == 'KDE':
                 fig = go.Figure()
             
                 # Control KDE
@@ -208,7 +208,7 @@ class ABLisk:
                 )
                 
             
-            elif plot_ == 'Error Bars':
+            elif plot == 'Error Bars':
                 # Error bars and effects
                 fig = go.Figure()
             
