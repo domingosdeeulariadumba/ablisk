@@ -41,7 +41,7 @@ def load_from_dataset(dataset: str | pd.DataFrame) -> tuple[int, float, int, flo
     The function expects:
     - Column 1: user_id (any format)
     - Column 2: variant ("control" or "treatment")
-    - Column 3: converted ({"yes", "no"}, {1, 0}, or {"1", "0"})
+    - Column 3: converted ({"yes", "no"} case-insensitive, {1, 0})
     
     Conversion values are automatically normalized to binary integers (0 or 1).
     
@@ -80,15 +80,16 @@ def load_from_dataset(dataset: str | pd.DataFrame) -> tuple[int, float, int, flo
         )
              
     # Checking result records
-    converted_values = set(dataset.converted.unique())
+    converted_values = set(dataset.converted.unique()) if dataset.converted.dtype != 'object' \
+                        else df.conversion.str.lower()
     
     if converted_values <= {'yes', 'no'}:
         dataset['converted'] = dataset.converted.map(lambda e: 1 if e == 'yes' else 0)
-    elif converted_values <= {1, 0, '1', '0'}:
+    elif converted_values <= {1, 0}:
         dataset['converted'] = dataset.converted.astype(int)
     else:
         raise ValueError(
-            'ablisk expects {"yes", "no"}, {1, 0}, or {"1", "0"} as the '
+            'ablisk expects {"yes", "no"} case-insensitive, {1, 0} as the '
             f'unique entries of conversion. You have {converted_values} instead.'
         )
     

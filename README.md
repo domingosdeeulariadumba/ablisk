@@ -1,6 +1,6 @@
 # ablisk
 
-This module aims to make it easier for data scientists, analysts, and engineers to conduct statistically sound experiments. At its core is the `ABLisk` class. This class provides tools for designing, analyzing, and simulating A/B tests.
+This package aims to make it easier for data scientists, analysts, and engineers to conduct statistically sound experiments. At its core is the `ABLisk` class. This class provides tools for designing, analyzing, and simulating A/B tests.
 
 ---
 
@@ -34,12 +34,15 @@ ABLisk(bcr, mde, alpha = 0.05, power = 0.8, is_absolute_variation: bool = True, 
 1. **`get_sample_size()`**
    - Calculates the minimum required sample size.
 
-3. **`get_experiment_results(n_ctrl, p_ctrl, n_trmt, p_trmt, plot_type = 'KDE')`**
+3. **`get_experiment_results(n_ctrl, p_ctrl, n_trmt, p_trmt, plot, full_summary, from_dataset, dataset)`**
    - Analyzes and visualizes results.
    - Parameters:
      - `n_ctrl`, `n_trmt`: Sample sizes of the control and treatment groups.
      - `p_ctrl`, `p_trmt`: Conversion rates for control and treatment groups.
-     - `plot_type`: for visualization(`'KDE'` or `'Confidence Intervals'`) or results summary and recommendations (None).
+     - `plot`: for visualization(`'KDE'` or `'Confidence Intervals'`) or results summary and recommendations (None).
+     - `full_summary`: whether to pass the results summary as a string (to be printed) or as a tuple containing pieces of this same summary.
+     - `from_dataset`: whether to get sample size and proportions from an experiment dataset or bay manually inserting in their respective arguments.
+     - `dataset`: the csv file path or DataFrame with three arbitrary named columns describing the user ID, the variants ("treatment" or "control"), and whether the user as converted ({"yes", "no"} case-insensitive, 1, 0) 
 
 ---
 
@@ -53,7 +56,7 @@ ABLisk(bcr, mde, alpha = 0.05, power = 0.8, is_absolute_variation: bool = True, 
 ### Importing the module
 
 ```python
-from ablisk import ABLisk
+from ablisk.core import ABLisk
 ```
 
 ### Example: Calculate Sample Size
@@ -65,7 +68,7 @@ print(f"Required Sample Size: {sample_size}")
 
 ### Example: Visualize Experiment Results
 ```python
-ab_test.get_experiment_results(n_ctrl = 500, p_ctrl = 0.1, n_trmt = 500, p_trmt = 0.12, plot_type = 'Confidence Intervals')
+ab_test.get_experiment_results(n_ctrl = 500, p_ctrl = 0.1, n_trmt = 500, p_trmt = 0.12, plot_type = 'Error Bars')
 ```
 
 💡 A more detailed example regarding the implementation of this tool is available on its respective <em> <a href = 'https://github.com/domingosdeeulariadumba/ablisk/blob/master/ablisk_examples_notebook.ipynb' target = '_blank'> notebook.</em> You can view the notebook using nbviewer due to GitHub rendering limitations [here](https://github.com/domingosdeeulariadumba/ablisk/blob/main/ablisk_examples_notebook.ipynb).
