@@ -1,5 +1,6 @@
 # Dependencies
 import math
+from ablisk.utils import load_from_dataset
 import numpy as np
 import pandas as pd
 import scipy.stats as scs
@@ -81,7 +82,10 @@ class ABLisk:
 
     
     # A method for experiment results summary
-    def get_experiment_results(self, n_ctrl: int, p_ctrl: float, n_trmt: int, p_trmt: float, plot_ = None, full_summary = True) -> go.Figure | str | tuple[str]:  
+    def get_experiment_results(
+            self, n_ctrl: int, p_ctrl: float, n_trmt: int, p_trmt: float,
+            plot_ = None, full_summary = True, from_dataset = False, dataset: str | None = None
+            ) -> go.Figure | str | tuple[str]:  
         """
         Method for retrieving the experiment results.
         
@@ -94,8 +98,18 @@ class ABLisk:
         - plot_type (default: 'KDE'): parameter for deciding whether to plot 
           KDEs or Confidence Intervals for supporting the final decision.
         - full_summary (default: True): whether to return the summary as a single string (if True) or as a tuple of summary and recommendation (if False).
-        
+        - from_dataset (default: False): whether the data is being passed from a dataset or not.
+        - dataset (default: None): the name of the dataset if `from_dataset` is True.
+        Returns
+        -------
+        - A plotly Figure object if `plot_type` is provided; otherwise, a string
+          summary or a tuple of summary and recommendation.
         """
+        
+        if from_dataset:
+            if dataset is None:
+                raise ValueError('Dataset name must be provided when "from_dataset" is True.')
+            n_ctrl, p_ctrl, n_trmt, p_trmt = load_from_experiment_dataset(dataset)
         
         # Proportions input conditions
         if isinstance(p_ctrl, (int, float)) and ((p_ctrl < .0) or (p_ctrl > 1.0)):
