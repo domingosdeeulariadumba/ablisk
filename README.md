@@ -71,7 +71,7 @@ print(f"Required Sample Size: {sample_size}")
 ab_test.get_experiment_results(n_ctrl = 500, p_ctrl = 0.1, n_trmt = 500, p_trmt = 0.12, plot_type = 'Error Bars')
 ```
 
-💡 A more detailed example regarding the implementation of this tool is available on its respective <em> <a href = 'https://github.com/domingosdeeulariadumba/ablisk/blob/main/examples.ipynb' target = '_blank'> notebook.</em> You can view the notebook using nbviewer due to GitHub rendering limitations [here](https://github.com/domingosdeeulariadumba/ablisk/blob/main/examples.ipynb).
+💡 A more detailed example regarding the implementation of this tool is available on its respective <em> <a href = 'https://github.com/domingosdeeulariadumba/ablisk/blob/main/examples.ipynb' target = '_blank'> notebook.</em> You can view the notebook using nbviewer due to GitHub rendering limitations [here](https://nbviewer.org/github/domingosdeeulariadumba/ablisk/blob/main/examples.ipynb).
 
 ---
 
